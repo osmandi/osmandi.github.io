@@ -28,14 +28,18 @@ url: "https://osmandi.com" # the base hostname & protocol for your site, e.g. ht
 github_username:  osmandi
 
 # Build settings
-theme: hacked-jekyll
+# theme: hacked-jekyll
+theme: minima
 plugins:
   - jekyll-feed
 
 # Customize theme hacked-jekyll
-lowercase: false
-newtab: true
+# lowercase: false
+# newtab: true
 
+# Theme personalization
+minima:
+  skin: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default.
