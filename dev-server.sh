@@ -1,1 +1,1 @@
-jekyll server --drafts
+jekyll server --drafts -l
