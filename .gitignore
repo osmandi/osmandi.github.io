@@ -1,5 +1,19 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Quarto
+**.quarto/
+**_freeze/
+**_site/
+**libs/
+**figure-html/
+**.html
+**.pdf
