@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Osmandi's blog",
+    "section": "",
+    "text": "How to run SQL in Quarto\n\n\n\nQuarto\n\nSQL\n\nR\n\n\n\nConfigure to run SQL sentences inside Quarto Documents\n\n\n\n\n\nJun 8, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html",
+    "href": "blog/how-to-run-sql-in-quarto.html",
+    "title": "How to run SQL in Quarto",
+    "section": "",
+    "text": "```{r}\ninstall.packages(c('rmarkdown', 'knitr', 'DBI', 'RSQLite', 'dplyr'))\ninstall.packages('dbplyr', dependencies = TRUE)\n```"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#install-the-following-r-packages",
+    "href": "blog/how-to-run-sql-in-quarto.html#install-the-following-r-packages",
+    "title": "How to run SQL in Quarto",
+    "section": "",
+    "text": "```{r}\ninstall.packages(c('rmarkdown', 'knitr', 'DBI', 'RSQLite', 'dplyr'))\ninstall.packages('dbplyr', dependencies = TRUE)\n```"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#import-the-libraries-in-r",
+    "href": "blog/how-to-run-sql-in-quarto.html#import-the-libraries-in-r",
+    "title": "How to run SQL in Quarto",
+    "section": "2 Import the libraries in R",
+    "text": "2 Import the libraries in R\n\nlibrary(DBI)\nlibrary(RSQLite)\nlibrary(dplyr)"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#create-the-connection-to-the-database",
+    "href": "blog/how-to-run-sql-in-quarto.html#create-the-connection-to-the-database",
+    "title": "How to run SQL in Quarto",
+    "section": "3 Create the connection to the database",
+    "text": "3 Create the connection to the database\nIn this case I’m using SQLite in memory that wont create a file. And also, I’ll use the dataset mtcars included in the R packages.\n\ncon &lt;- DBI::dbConnect(RSQLite::SQLite(), \n                      dbname = \":memory:\")\n\ncopy_to(dest = con, \n        df = mtcars, \n        name = \"mtcars\")\n\ndbListTables(con)\n\n[1] \"mtcars\"       \"sqlite_stat1\" \"sqlite_stat4\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn this point we are ready to start SQL executions in this Quarto document."
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#select",
+    "href": "blog/how-to-run-sql-in-quarto.html#select",
+    "title": "How to run SQL in Quarto",
+    "section": "4 Select",
+    "text": "4 Select\nWe start applying a Select sentence on the database mtcars created in the step before.\n\nSELECT * FROM mtcars;\n\n\nDisplaying records 1 - 10\n\n\nmpg\ncyl\ndisp\nhp\ndrat\nwt\nqsec\nvs\nam\ngear\ncarb\n\n\n\n\n21.0\n6\n160.0\n110\n3.90\n2.620\n16.46\n0\n1\n4\n4\n\n\n21.0\n6\n160.0\n110\n3.90\n2.875\n17.02\n0\n1\n4\n4\n\n\n22.8\n4\n108.0\n93\n3.85\n2.320\n18.61\n1\n1\n4\n1\n\n\n21.4\n6\n258.0\n110\n3.08\n3.215\n19.44\n1\n0\n3\n1\n\n\n18.7\n8\n360.0\n175\n3.15\n3.440\n17.02\n0\n0\n3\n2\n\n\n18.1\n6\n225.0\n105\n2.76\n3.460\n20.22\n1\n0\n3\n1\n\n\n14.3\n8\n360.0\n245\n3.21\n3.570\n15.84\n0\n0\n3\n4\n\n\n24.4\n4\n146.7\n62\n3.69\n3.190\n20.00\n1\n0\n4\n2\n\n\n22.8\n4\n140.8\n95\n3.92\n3.150\n22.90\n1\n0\n4\n2\n\n\n19.2\n6\n167.6\n123\n3.92\n3.440\n18.30\n1\n0\n4\n4"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#apply-a-sum-functions-in-one-of-the-columns",
+    "href": "blog/how-to-run-sql-in-quarto.html#apply-a-sum-functions-in-one-of-the-columns",
+    "title": "How to run SQL in Quarto",
+    "section": "5 Apply a SUM functions in one of the columns",
+    "text": "5 Apply a SUM functions in one of the columns\n\nSELECT SUM(mpg) FROM mtcars;\n\n\n1 records\n\n\nSUM(mpg)\n\n\n\n\n642.9"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#apply-a-distinct-in-one-column",
+    "href": "blog/how-to-run-sql-in-quarto.html#apply-a-distinct-in-one-column",
+    "title": "How to run SQL in Quarto",
+    "section": "6 Apply a distinct in one column",
+    "text": "6 Apply a distinct in one column\n\nSELECT distinct(cyl) FROM mtcars;\n\n\n3 records\n\n\ncyl\n\n\n\n\n6\n\n\n4\n\n\n8"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#personal-notes",
+    "href": "blog/how-to-run-sql-in-quarto.html#personal-notes",
+    "title": "How to run SQL in Quarto",
+    "section": "7 Personal notes",
+    "text": "7 Personal notes\nCreating this blog I discover the following things:\n\nSQL interface in quarto only accepts SELECT statements\nThis requires rmarkdown and knitr R libraries installed\nThe package dplyr is to use the function copy_to()"
+  },
+  {
+    "objectID": "blog/how-to-run-sql-in-quarto.html#references",
+    "href": "blog/how-to-run-sql-in-quarto.html#references",
+    "title": "How to run SQL in Quarto",
+    "section": "References",
+    "text": "References\nSpecial thanks to the following links:\n\nhttps://forum.posit.co/t/sql-errors-while-rendering-quarto/147671\nhttps://quarto.org/docs/computations/r.html"
+  }
+]
