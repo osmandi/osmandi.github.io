@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Osmandi's blog"
+  favicon: ./profile.jpg
   navbar:
     right:
       - about.qmd
