@@ -5,7 +5,6 @@ date: "2025-06-13"
 categories: [Python, UV]
 execute: 
   enabled: false
-engine: knitr
 ---
 
 
@@ -27,17 +26,17 @@ We have different options to install `uv` go ahead to the documentation [Install
 ### Basic commands
 
 Install specific Python version
-```{Bash}
+```Bash
 uv python install 3.12 3.11
 ```
 
 List Python versions installed
-```{Bash}
+```Bash
 uv python list
 ```
 
 Run a Python script
-```{Bash}
+```Bash
 uv run script.py
 ```
 
@@ -51,7 +50,7 @@ Starting a project will create the following files:
 - .python-version
 
 Commands:
-```{Bash}
+```Bash
 # Start the project hello-world
 uv init hello-world
 
@@ -68,12 +67,12 @@ uv run main.py
 ### Working with virtual environments
 
 Create a virtual environment (this command will create `.venv` folder)
-```{Bash}
+```Bash
 uv venv
 ```
 
 Installing packages on the `.venv`
-```{Bash}
+```Bash
 # A package
 uv pip install PACKAGE_NAME
 
@@ -82,7 +81,7 @@ uv pip install -r requirements.txt
 ```
 
 Activate the virtual environment for `Bash` and `ZSH` shell
-```{Bash}
+```Bash
 source .venv/bin/activate
 ```
 
@@ -92,51 +91,51 @@ source .venv/bin/activate
 ### Dependencies management
 
 Add a public library with specific version
-```{Bash}
+```Bash
 uv add 'request==2.31.0'
 ```
 
 Add a library using git repository (could be useful for private repositories)
-```{Bash}
+```Bash
 uv add git.https://github.com/...
 ```
 
 Install with requirements.txt and constraints.txt files
-```{Bash}
+```Bash
 uv add -r requirements.txt -c constraints.txt
 ```
 
 Remove packages
-```{Bash}
+```Bash
 uv remove requests
 ```
 
 ### Running servers
 
 Run a flask server
-```{Bash}
+```Bash
 uv run -- flask run -p 3000
 ```
 
 Run a quarto server in localhost
-```{Bash}
+```Bash
 uv run -- quarto preview mysite --port PORT --host 0.0.0.0
 ```
 
 Render quarto document
-```{Bash}
+```Bash
 uv run -- quarto render mysite
 ```
 
 ### Using integrations
 
 Using Jupyter Lab[^Jupyter]
-```{Bash}
+```Bash
 uv run --with jupyter jupyter lab
 ```
 
 Using Docker Images with `uv` installed [^Docker]
-```{Bash}
+```Bash
 docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
 ```
 
