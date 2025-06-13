@@ -1,0 +1,146 @@
+---
+title: "How to use uv"
+description: "Install, configure and usage of uv a Python package manager"
+date: "2025-06-13"
+categories: [Python, UV]
+execute: 
+  enabled: false
+engine: knitr
+---
+
+
+## What is uv?
+
+`uv` is "An extremely fast Python package and project manager, written in Rust."[^1]
+
+I've been using `uv` for some projects and I really notice an improvement in the velocity when I'm installing Python packages in comparison with another tools like `pip`. For example in the @fig-perfomance we can see the different in time installing the same package with different packages manager where `uv` is the fastest.
+
+![Installing Trio's dependencies with a warm cache. Source: <https://docs.astral.sh/uv/>](https://github.com/astral-sh/uv/assets/1309177/03aa9163-1c79-4a87-a31d-7a9311ed9310#only-dark){fig-align="center" #fig-perfomance}
+
+## Installation and configuration
+
+We have different options to install `uv` go ahead to the documentation [Installing uv](https://docs.astral.sh/uv/getting-started/installation/) to find the best option for you project.
+
+
+## Usage
+
+### Basic commands
+
+Install specific Python version
+```{Bash}
+uv python install 3.12 3.11
+```
+
+List Python versions installed
+```{Bash}
+uv python list
+```
+
+Run a Python script
+```{Bash}
+uv run script.py
+```
+
+### Start a project
+
+Starting a project will create the following files:
+
+- main.py
+- pyproject.toml
+- uv.lock
+- .python-version
+
+Commands:
+```{Bash}
+# Start the project hello-world
+uv init hello-world
+
+# Start the project hello-world with Python 3.12
+uv init hello-world --python 3.12
+
+# Usage the current folder as a project
+uv init
+
+# Execute the project
+uv run main.py 
+```
+
+### Working with virtual environments
+
+Create a virtual environment (this command will create `.venv` folder)
+```{Bash}
+uv venv
+```
+
+Installing packages on the `.venv`
+```{Bash}
+# A package
+uv pip install PACKAGE_NAME
+
+# A requirements.txt
+uv pip install -r requirements.txt
+```
+
+Activate the virtual environment for `Bash` and `ZSH` shell
+```{Bash}
+source .venv/bin/activate
+```
+
+
+
+
+### Dependencies management
+
+Add a public library with specific version
+```{Bash}
+uv add 'request==2.31.0'
+```
+
+Add a library using git repository (could be useful for private repositories)
+```{Bash}
+uv add git.https://github.com/...
+```
+
+Install with requirements.txt and constraints.txt files
+```{Bash}
+uv add -r requirements.txt -c constraints.txt
+```
+
+Remove packages
+```{Bash}
+uv remove requests
+```
+
+### Running servers
+
+Run a flask server
+```{Bash}
+uv run -- flask run -p 3000
+```
+
+Run a quarto server in localhost
+```{Bash}
+uv run -- quarto preview mysite --port PORT --host 0.0.0.0
+```
+
+Render quarto document
+```{Bash}
+uv run -- quarto render mysite
+```
+
+### Using integrations
+
+Using Jupyter Lab[^Jupyter]
+```{Bash}
+uv run --with jupyter jupyter lab
+```
+
+Using Docker Images with `uv` installed [^Docker]
+```{Bash}
+docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
+```
+
+
+[^1]: <https://docs.astral.sh/uv/>
+[^Docker]: <https://docs.astral.sh/uv/guides/integration/docker/>
+[^Jupyter]: <https://docs.astral.sh/uv/guides/integration/jupyter/>
