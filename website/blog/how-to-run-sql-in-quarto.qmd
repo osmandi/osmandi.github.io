@@ -3,13 +3,6 @@ title: "How to run SQL in Quarto"
 description: "Configure to run SQL sentences inside Quarto Documents"
 date: "2025-06-08"
 categories: [Quarto, SQL, R]
-format: 
-  html:
-    toc: true
-    code-fold: false
-    number-sections: true
-    toc-title: Contents
-    toc-location: left
 execute: 
   enabled: true
   freeze: auto  # re-render only when source changes
