@@ -39,7 +39,7 @@ Recuerda usar imágenes
 - Master in Visual Analytics and Big Data, 2025
 - Chemical Engineer, 2015
 
-## Online Courses
+## Online trainings
 
 - 100 Snowflake Cost Optimization Techniques at Udemy, 2025
 - Data Engineer at DataCamp, 2021
