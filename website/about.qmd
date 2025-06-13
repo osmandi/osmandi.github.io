@@ -1,6 +1,7 @@
 ---
 title: "About"
 image: profile.jpg
+lightbox: true
 about:
   template: jolla
   links:
@@ -12,3 +13,34 @@ about:
       href: https://github.com/osmandi
 ---
 
+Data Engineer & Chemical Engineer specialized in Big Data and Payments analysis.
+
+<!--
+# Comanterio no renderizado
+Recuerda usar imágenes
+-->
+
+<!--
+## Skills
+
+- Python
+- SQL
+- PySpark (Dataproc, Databricks)
+- HDFS
+
+-->
+
+## Certifications
+
+![AWS Cloud Practitioner](https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png){width=200 height=200}
+
+## Education
+
+- Master in Visual Analytics and Big Data, 2025
+- Chemical Engineer, 2015
+
+## Online Courses
+
+- 100 Snowflake Cost Optimization Techniques at Udemy, 2025
+- Data Engineer at DataCamp, 2021
+- Data Analytics at DataCamp, 2020
