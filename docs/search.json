@@ -4,35 +4,7 @@
     "href": "index.html",
     "title": "Osmandi's blog",
     "section": "",
-    "text": "How to run SQL in Quarto\n\n\n\nQuarto\n\nSQL\n\nR\n\n\n\nConfigure to run SQL sentences inside Quarto Documents\n\n\n\n\n\nJun 8, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Data Engineer & Chemical Engineer specialized in Big Data and Payments analysis."
-  },
-  {
-    "objectID": "about.html#certifications",
-    "href": "about.html#certifications",
-    "title": "About",
-    "section": "1 Certifications",
-    "text": "1 Certifications\n\n\n\nAWS Cloud Practitioner"
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "2 Education",
-    "text": "2 Education\n\nMaster in Visual Analytics and Big Data, 2025\nChemical Engineer, 2015"
-  },
-  {
-    "objectID": "about.html#online-courses",
-    "href": "about.html#online-courses",
-    "title": "About",
-    "section": "3 Online Courses",
-    "text": "3 Online Courses\n\n100 Snowflake Cost Optimization Techniques at Udemy, 2025\nData Engineer at DataCamp, 2021\nData Analytics at DataCamp, 2020"
+    "text": "How to use uv\n\n\n\nPython\n\nUV\n\n\n\nInstall, configure and usage of uv a Python package manager\n\n\n\n\n\nJun 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to run SQL in Quarto\n\n\n\nQuarto\n\nSQL\n\nR\n\n\n\nConfigure to run SQL sentences inside Quarto Documents\n\n\n\n\n\nJun 8, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/how-to-run-sql-in-quarto.html",
@@ -96,5 +68,68 @@
     "title": "How to run SQL in Quarto",
     "section": "References",
     "text": "References\nSpecial thanks to the following links:\n\nhttps://forum.posit.co/t/sql-errors-while-rendering-quarto/147671\nhttps://quarto.org/docs/computations/r.html"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Data Engineer & Chemical Engineer specialized in Big Data and Payments analysis."
+  },
+  {
+    "objectID": "about.html#certifications",
+    "href": "about.html#certifications",
+    "title": "About",
+    "section": "1 Certifications",
+    "text": "1 Certifications\n\n\n\nAWS Cloud Practitioner"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "2 Education",
+    "text": "2 Education\n\nMaster in Visual Analytics and Big Data, 2025\nChemical Engineer, 2015"
+  },
+  {
+    "objectID": "about.html#online-courses",
+    "href": "about.html#online-courses",
+    "title": "About",
+    "section": "3 Online Courses",
+    "text": "3 Online Courses\n\n100 Snowflake Cost Optimization Techniques at Udemy, 2025\nData Engineer at DataCamp, 2021\nData Analytics at DataCamp, 2020"
+  },
+  {
+    "objectID": "blog/how-to-use-uv.html",
+    "href": "blog/how-to-use-uv.html",
+    "title": "How to use uv",
+    "section": "",
+    "text": "uv is “An extremely fast Python package and project manager, written in Rust.”1\nI’ve been using uv for some projects and I really notice an improvement in the velocity when I’m installing Python packages in comparison with another tools like pip. For example in the Figure 1 we can see the different in time installing the same package with different packages manager where uv is the fastest.\n\n\n\n\n\n\nFigure 1: Installing Trio’s dependencies with a warm cache. Source: https://docs.astral.sh/uv/"
+  },
+  {
+    "objectID": "blog/how-to-use-uv.html#what-is-uv",
+    "href": "blog/how-to-use-uv.html#what-is-uv",
+    "title": "How to use uv",
+    "section": "",
+    "text": "uv is “An extremely fast Python package and project manager, written in Rust.”1\nI’ve been using uv for some projects and I really notice an improvement in the velocity when I’m installing Python packages in comparison with another tools like pip. For example in the Figure 1 we can see the different in time installing the same package with different packages manager where uv is the fastest.\n\n\n\n\n\n\nFigure 1: Installing Trio’s dependencies with a warm cache. Source: https://docs.astral.sh/uv/"
+  },
+  {
+    "objectID": "blog/how-to-use-uv.html#installation-and-configuration",
+    "href": "blog/how-to-use-uv.html#installation-and-configuration",
+    "title": "How to use uv",
+    "section": "2 Installation and configuration",
+    "text": "2 Installation and configuration\nWe have different options to install uv go ahead to the documentation Installing uv to find the best option for you project."
+  },
+  {
+    "objectID": "blog/how-to-use-uv.html#usage",
+    "href": "blog/how-to-use-uv.html#usage",
+    "title": "How to use uv",
+    "section": "3 Usage",
+    "text": "3 Usage\n\n3.1 Basic commands\nInstall specific Python version\n\nuv python install 3.12 3.11\n\nList Python versions installed\n\nuv python list\n\nRun a Python script\n\nuv run script.py\n\n\n\n3.2 Start a project\nStarting a project will create the following files:\n\nmain.py\npyproject.toml\nuv.lock\n.python-version\n\nCommands:\n\n# Start the project hello-world\nuv init hello-world\n\n# Start the project hello-world with Python 3.12\nuv init hello-world --python 3.12\n\n# Usage the current folder as a project\nuv init\n\n# Execute the project\nuv run main.py \n\n\n\n3.3 Working with virtual environments\nCreate a virtual environment (this command will create .venv folder)\n\nuv venv\n\nInstalling packages on the .venv\n\n# A package\nuv pip install PACKAGE_NAME\n\n# A requirements.txt\nuv pip install -r requirements.txt\n\nActivate the virtual environment for Bash and ZSH shell\n\nsource .venv/bin/activate\n\n\n\n3.4 Dependencies management\nAdd a public library with specific version\n\nuv add 'request==2.31.0'\n\nAdd a library using git repository (could be useful for private repositories)\n\nuv add git.https://github.com/...\n\nInstall with requirements.txt and constraints.txt files\n\nuv add -r requirements.txt -c constraints.txt\n\nRemove packages\n\nuv remove requests\n\n\n\n3.5 Running servers\nRun a flask server\n\nuv run -- flask run -p 3000\n\nRun a quarto server in localhost\n\nuv run -- quarto preview mysite --port PORT --host 0.0.0.0\n\nRender quarto document\n\nuv run -- quarto render mysite\n\n\n\n3.6 Using integrations\nUsing Jupyter Lab2\n\nuv run --with jupyter jupyter lab\n\nUsing Docker Images with uv installed 3\n\ndocker run --rm -it ghcr.io/astral-sh/uv:debian uv --help"
+  },
+  {
+    "objectID": "blog/how-to-use-uv.html#footnotes",
+    "href": "blog/how-to-use-uv.html#footnotes",
+    "title": "How to use uv",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://docs.astral.sh/uv/↩︎\nhttps://docs.astral.sh/uv/guides/integration/jupyter/↩︎\nhttps://docs.astral.sh/uv/guides/integration/docker/↩︎"
   }
 ]

@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/blog/how-to-use-uv.html",
       "/blog/how-to-run-sql-in-quarto.html"
     ]
   }
