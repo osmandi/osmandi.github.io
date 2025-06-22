@@ -23,6 +23,6 @@ RUN R -e "install.packages(c('rmarkdown', 'knitr',  'ggplot2', 'DBI', 'RSQLite',
   && R -e "install.packages('dbplyr', dependencies = TRUE)"
 
 # COPY files to Python UV
-COPY ./pyproject.toml ./uv.lock ./.python-version /quarto
+COPY ./pyproject.toml ./uv.lock ./.python-version /quarto/
 
 CMD quarto preview website --port 7879 --host 0.0.0.0 --no-browser
