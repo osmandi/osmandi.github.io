@@ -4,7 +4,49 @@
     "href": "index.html",
     "title": "Osmandi's blog",
     "section": "",
-    "text": "How to use uv\n\n\n\nPython\n\nUV\n\n\n\nInstall, configure and usage of uv a Python package manager\n\n\n\n\n\nJun 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to run SQL in Quarto\n\n\n\nQuarto\n\nSQL\n\nR\n\n\n\nConfigure to run SQL sentences inside Quarto Documents\n\n\n\n\n\nJun 8, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Instalar y configurar Archlinux en WSL2\n\n\n\nLinux\n\nDocker\n\nWSL2\n\n\n\nInstalación y configuración de la distribución Archlinux en WSL2 incluyendo Docker\n\n\n\n\n\nJun 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to use uv\n\n\n\nPython\n\nUV\n\n\n\nInstall, configure and usage of uv a Python package manager\n\n\n\n\n\nJun 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to run SQL in Quarto\n\n\n\nQuarto\n\nSQL\n\nR\n\n\n\nConfigure to run SQL sentences inside Quarto Documents\n\n\n\n\n\nJun 8, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "",
+    "text": "La primera vez que intenté instalar ArchLinux me tomó más de 2 semanas (básicamente mis vacaciones de la Uni), cometí muchos errores, generé múltiples kernel panics, rompía y reparaba en la medida que iba aprendiendo de Linux.\nLuego de eso empecé a usar ArchLinux como entorno principal. Cambiaba el entorno de escritorio (Gnome, KDE Plasma, Cinamon, etc) a cada rato, aprendí que se puede usar un gestor de sesión diferente al del entorno de escritorio1, llegué a dejar de tener imagen gráfica incluso2 (jejeje)…\n… Y me divertí un montón.\nDecidí crear este blog luego de darme cuenta de que WSL2 ya soporta ArchLinux y pues por los viejos tiempos de cuando usaba ArchLinux."
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html#por-qué-archlinux",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html#por-qué-archlinux",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "1 ¿Por qué ArchLinux?",
+    "text": "1 ¿Por qué ArchLinux?\nArchLinux es una distribución de Linux del tipo Rolling Release3, el cual los paquetes son actualizados de forma frecuente permitiendo acceder a paquetes en su versión más reciente de la comunidad que mantiene ese software, tanto para lo bueno (tener las últimas funciones) como para lo malo (posibles fallas).\nEsta distribución se ha caracterizado por ser retadora y requerir una gran cantidad de configuraciones para poder tener la distribución en perfecto funcionamiento. Esto permite que además de personalizar a tu gusto cuáles paquetes quieres en tu sistema, también te permite conocer a fondo cómo funciona GNU/Linux. Si te gustaría profundizar tus conocimientos en Linux, usar ArchLinux es excelente opción.\nUn último punto de esta distribución Linux es que cuenta con la ArchWiki, una de las Wikis más completas que existe en cuanto a distribuciones Linux. En más de una ocasión he leído en diferentes blogs “si no está en la ArchWiki es porque no existe”."
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html#instalación-de-archlinux-en-wsl2",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html#instalación-de-archlinux-en-wsl2",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "2 Instalación de ArchLinux en WSL2",
+    "text": "2 Instalación de ArchLinux en WSL2\nEmpezaremos instalando Arch en WSL2 para ello, usando PowerShell:\n\nwsl --install -d archlinux"
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html#actualizar-archlinux-e-instalar-algunos-paquetes",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html#actualizar-archlinux-e-instalar-algunos-paquetes",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "3 Actualizar ArchLinux e instalar algunos paquetes",
+    "text": "3 Actualizar ArchLinux e instalar algunos paquetes\nUna vez instalado ArchLinux en WSL automáticamente entrará en Bash de esa distribución. Allí procedermos a actualizar los paquetes e instalar git y curl que usaremos en la configuración.\n\n# Actualizar pacman\npacman -Syyu\n\n# Instalar paquetes adicionales\npacman -S git curl\n\nCrearemos el password para el usuario root:\n\npasswd\n\n\n\n\n\n\n\nLa contraseña no se mostrará en la medida que escribas.\n\n\n\nPresiona la tecla ENTER una vez lo hagas te pedirá que la insertes nuevamente y si coinciden la registrará.\n\n\nInstalar zsh (es opcional, pero es una shell alternativa a bash interesante que por cierto viene instalada por defecto en MacOS)\n\npacman -S zsh\n\nCrear y configurar sudo4\n\n# Instalar el comando sudo (sirve para tener permisos root)\npacman -S sudo\n\n# Crear el grupo sudo\ngroupadd sudo\n\n# Agregar las siguientes líneas al archivo sudoers\n## Si entras al archivo /etc/sudoers encontrarás que estas líneas pero comentadas\necho \"%wheel ALL=(ALL) NOPASSWD: ALL\" &gt;&gt; /etc/sudoers\necho \"%sudo ALL=(ALL) ALL\" &gt;&gt; /etc/sudoers\n\n\n\n\n\n\n\nNote\n\n\n\nRecuerda reemplazar my_username por el nombre de usuario de tu preferencia.\n\n\nCrear tu usuario5\n\n# Crear el usuario\n## Si usas bash, reemplaza /bin/zsh por /bin/bash\nuseradd -m -G wheel,sudo -s /bin/zsh my_username\n\n# Asignar contraseña al usuario que creaste\npasswd my_username\n\nConfigurar para que el usuario que creaste sea el por defecto6\n\n# Hacer que el usuario que creaste sea el por defecto\n## Si no lo haces, cada vez que entres a ArchLinux iniciará con el usuario root\necho -e \"\\n[user]\\ndefault=my_username\" &gt;&gt; /etc/wsl.conf\n\n\n\n\n\n\n\nDefinir el usuario por defecto desde PowerShell\n\n\n\n\nwsl --manage archlinux --set-default-user my_username\n\n\n\nConfiguración de ohmyzsh7, paso opcional, pero le dará un toque a tu zsh.\n\n# Instalar y configurar ohmyzsh\n## Al final te preguntará si quieres hacer zsh la shell por defecto\nsh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"\n\nInstalación y configuración de Docker8\n\n# Instalar docker y docker-compose\nsudo pacman -S docker docker-compose\n\n# Habilitar el servicio de docker\nsudo systemctl start docker.service\nsudo systemctl enable docker.service\n\n# Añadir el usuario creado para que use Docker sin requerir `sudo`\nsudo usermod -aG docker $USER\nnewgrp docker # Refrescar el grupo docker\n\n# Probar que Docker ha quedado instalado correctamente\ndocker run hello-world\n\nSi te gusta ejecutar modelos de LLM locales o si trabajas con DeepLearning (Pytorch o Tensorflow) te será muy útil configurar la GPU con Docker9\n\n# Instalar Nvidia Container Toolkit\nsudo pacman -S nvidia-container-toolkit\n\n# Reiniciar el servicio de docker\nsudo systemctl restart docker.service\n\n# Probar que funcione correctamente\n## El output mostrará la información de la tarjeta nvidia que tienes en tu PC\ndocker run --gpus all nvidia/cuda:12.1.1-runtime-ubuntu22.04 nvidia-smi"
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html#notas-finales",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html#notas-finales",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "4 Notas finales",
+    "text": "4 Notas finales\n\nEs muy raro que la instalación de ArchLinux se rompa una vez ya esté configurado.\nInstalar y configurar Arch en WSL2 es mucho más fácil que instalarlo nativo en PC.\nCon WSL2 puedes acceder a CLIs de Windows desde Arch y cualquier otra distro instalada en WSL2 usando su extensión .exe como por ejemplo calibre.exe.\nHay problemas con aplicaciones gráficas instaladas desde Arch10 pero se puede hacer un fix de eso11 aunque no lo he intentado.\nEste artículo en particular fue escrito en ArchLinux usando WSL2 (en solo un par de horas lo instalé y configuré, antes me tomaba días)."
+  },
+  {
+    "objectID": "blog/instalar-y-configurar-archlinux-en-wsl2.html#footnotes",
+    "href": "blog/instalar-y-configurar-archlinux-en-wsl2.html#footnotes",
+    "title": "Instalar y configurar Archlinux en WSL2",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nse veía muy extraño por cierto.↩︎\ncon ello aprendí que Linux tiene varias terminales TTY y que es en una de ellas donde se usa para renderizar los gráficos del entorno de escritorio que curiosamente solía ser el TTY7.↩︎\nhttps://en.wikipedia.org/wiki/Rolling_release#Model↩︎\nhttps://dev.to/jrcharney/how-to-install-arch-linux-for-wsl-184a↩︎\nhttps://gist.github.com/ld100/3376435a4bb62ca0906b0cff9de4f94b↩︎\nhttps://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL#Set_default_user↩︎\nhttps://github.com/ohmyzsh/ohmyzsh↩︎\nhttps://itsfoss.com/install-docker-arch-linux/↩︎\nhttps://wiki.archlinux.org/title/Docker#Run_GPU_accelerated_Docker_containers_with_NVIDIA_GPUs↩︎\nDesde WSL2 las aplicaciones con interfaz gráfica instalada desde Linux se pueden ver desde Windows.↩︎\nhttps://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL#Run_graphical_applications_with_WSLg↩︎"
   },
   {
     "objectID": "blog/how-to-run-sql-in-quarto.html",
@@ -70,34 +112,6 @@
     "text": "References\nSpecial thanks to the following links:\n\nhttps://forum.posit.co/t/sql-errors-while-rendering-quarto/147671\nhttps://quarto.org/docs/computations/r.html"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Data Engineer & Chemical Engineer specialized in Big Data and Payments analysis."
-  },
-  {
-    "objectID": "about.html#certifications",
-    "href": "about.html#certifications",
-    "title": "About",
-    "section": "1 Certifications",
-    "text": "1 Certifications\n\n\n\nAWS Cloud Practitioner"
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "2 Education",
-    "text": "2 Education\n\nMaster in Visual Analytics and Big Data, 2025\nChemical Engineer, 2015"
-  },
-  {
-    "objectID": "about.html#online-trainings",
-    "href": "about.html#online-trainings",
-    "title": "About",
-    "section": "3 Online trainings",
-    "text": "3 Online trainings\n\n100 Snowflake Cost Optimization Techniques at Udemy, 2025\nData Engineer at DataCamp, 2021\nData Analytics at DataCamp, 2020"
-  },
-  {
     "objectID": "blog/how-to-use-uv.html",
     "href": "blog/how-to-use-uv.html",
     "title": "How to use uv",
@@ -131,5 +145,33 @@
     "title": "How to use uv",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nhttps://docs.astral.sh/uv/↩︎\nhttps://docs.astral.sh/uv/guides/integration/jupyter/↩︎\nhttps://docs.astral.sh/uv/guides/integration/docker/↩︎"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Data Engineer & Chemical Engineer specialized in Big Data and Payments analysis."
+  },
+  {
+    "objectID": "about.html#certifications",
+    "href": "about.html#certifications",
+    "title": "About",
+    "section": "1 Certifications",
+    "text": "1 Certifications\n\n\n\nAWS Cloud Practitioner"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "2 Education",
+    "text": "2 Education\n\nMaster in Visual Analytics and Big Data, 2025\nChemical Engineer, 2015"
+  },
+  {
+    "objectID": "about.html#online-trainings",
+    "href": "about.html#online-trainings",
+    "title": "About",
+    "section": "3 Online trainings",
+    "text": "3 Online trainings\n\n100 Snowflake Cost Optimization Techniques at Udemy, 2025\nData Engineer at DataCamp, 2021\nData Analytics at DataCamp, 2020"
   }
 ]
