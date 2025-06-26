@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-06-26">
+<meta name="description" content="Configurar LangChain para ejecutar LLM locales con Ollama y Docker">
 
-<title>Osmandi’s blog</title>
+<title>LangChain con Ollama y Docker – Osmandi’s blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +22,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="././profile.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-eca5f5e3f45f5f37b6ab2c74a90236c6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-65c8eeba1d4962f10e7b467243ba9e04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href=".././profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eca5f5e3f45f5f37b6ab2c74a90236c6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-65c8eeba1d4962f10e7b467243ba9e04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,67 +107,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
@@ -298,11 +275,11 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Osmandi’s blog</span>
     </a>
   </div>
@@ -313,7 +290,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -335,154 +312,219 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TGFuZ0NoYWlu">LangChain <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGludXg=">Linux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T2xsYW1h">Ollama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1FM">SQL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VVY=">UV <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V1NMMg==">WSL2 <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#descripción-del-proyecto" id="toc-descripción-del-proyecto" class="nav-link active" data-scroll-target="#descripción-del-proyecto"><span class="header-section-number">1</span> Descripción del proyecto</a></li>
+  <li><a href="#requerimientos" id="toc-requerimientos" class="nav-link" data-scroll-target="#requerimientos"><span class="header-section-number">2</span> Requerimientos</a></li>
+  <li><a href="#explicación-del-código" id="toc-explicación-del-código" class="nav-link" data-scroll-target="#explicación-del-código"><span class="header-section-number">3</span> Explicación del código</a></li>
+  <li><a href="#ejecución" id="toc-ejecución" class="nav-link" data-scroll-target="#ejecución"><span class="header-section-number">4</span> Ejecución</a></li>
+  <li><a href="#notas-finales" id="toc-notas-finales" class="nav-link" data-scroll-target="#notas-finales"><span class="header-section-number">5</span> Notas finales</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LangChain con Ollama y Docker</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">LangChain</div>
+    <div class="quarto-category">Ollama</div>
+    <div class="quarto-category">LLM</div>
+    <div class="quarto-category">Docker</div>
+    <div class="quarto-category">WSL2</div>
+  </div>
+  </div>
 
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TGFuZ0NoYWluJTJDT2xsYW1hJTJDTExNJTJDRG9ja2VyJTJDV1NMMg==" data-listing-date-sort="1750896000000" data-listing-file-modified-sort="1750979570073" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="593">
-<div class="thumbnail"><a href="./blog/langchain-with-ollama-and-docker.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/langchain-with-ollama-and-docker.html" class="no-external">LangChain con Ollama y Docker</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFuZ0NoYWlu'); return false;">LangChain</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('T2xsYW1h'); return false;">Ollama</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExN'); return false;">LLM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V1NMMg=='); return false;">WSL2</div>
-
+<div>
+  <div class="description">
+    Configurar LangChain para ejecutar LLM locales con Ollama y Docker
+  </div>
 </div>
-<div class="delink listing-description"><a href="./blog/langchain-with-ollama-and-docker.html" class="no-external">
-<p>Configurar LangChain para ejecutar LLM locales con Ollama y Docker</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./blog/langchain-with-ollama-and-docker.html" class="no-external">
-<div class="listing-date">
-Jun 26, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TGludXglMkNEb2NrZXIlMkNXU0wy" data-listing-date-sort="1750636800000" data-listing-file-modified-sort="1750953886320" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="827">
-<div class="thumbnail"><a href="./blog/instalar-y-configurar-archlinux-en-wsl2.html" class="no-external">
 
-<p class="card-img-top"><img src="blog/assets/wsl_images_2025.png"  class="thumbnail-image card-img"/></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/instalar-y-configurar-archlinux-en-wsl2.html" class="no-external">Instalar y configurar Archlinux en WSL2</a>
-</h3>
-<div class="listing-categories">
+<div class="quarto-title-meta">
 
-<div class="listing-category" onclick="window.quartoListingCategory('TGludXg='); return false;">Linux</div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
-<div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('V1NMMg=='); return false;">WSL2</div>
+</header>
 
+
+<p>En tutoriales y diversos artículos de LangChain he visto que usan muchos modelos LLMs comerciales como por ejemplo OpenAI, Claude, Gemini, etc. Y me estuve preguntando ¿cómo sería ejecutarlo con modelos locales como Llama3?, y ¿por qué no? Usar Docker<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> y uv<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Luego de un par de horas probando logré ejecutar LangChain usando Llama3 con ChatOllama<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> dentro de Docker y en este pequeño blog te comparto algunos detalles importantes de cómo funciona.</p>
+<section id="descripción-del-proyecto" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="descripción-del-proyecto"><span class="header-section-number">1</span> Descripción del proyecto</h2>
+<p>El proyecto lo que hace es traducir un texto del idioma Inglés al Español usando Llama3 en local con Ollama.</p>
+</section>
+<section id="requerimientos" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="requerimientos"><span class="header-section-number">2</span> Requerimientos</h2>
+<p>Para ejecutar el proyecto solo necesitarás tener Docker instalado y si tienes habilitada la GPU con tarjeta Nvidia se ejecutará con mayor rapidez.</p>
+</section>
+<section id="explicación-del-código" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="explicación-del-código"><span class="header-section-number">3</span> Explicación del código</h2>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Dockerfile</strong></pre>
 </div>
-<div class="delink listing-description"><a href="./blog/instalar-y-configurar-archlinux-en-wsl2.html" class="no-external">
-<p>Instalación y configuración de la distribución Archlinux en WSL2 incluyendo Docker</p>
-</a></div>
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource dockerfile code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode dockerfile"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="kw">FROM</span> ubuntu:24.04</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a><span class="co"># Prepare environment</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="dt">\</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> curl</span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a><span class="co"># Install uv and ollama</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span> <span class="dt">\</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11"></a>  <span class="kw">&amp;&amp;</span> <span class="ex">curl</span> <span class="at">-fsSL</span> https://ollama.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a><span class="co"># Copy files to the image</span></span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14"></a><span class="kw">COPY</span> ./ /app/</span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15"></a></span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16"></a><span class="co"># Run Ollama Serve, get Ollama model and run LangChain with uv</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-17" class="code-annotation-target"><a href="#annotated-cell-1-17"></a><span class="kw">CMD</span> <span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"ollama serve &amp; sleep 2 &amp;&amp; ollama pull llama3 &amp;&amp; </span><span class="va">$HOME</span><span class="st">/.local/bin/uv run main.py ; pkill ollama"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="metadata">
-<a href="./blog/instalar-y-configurar-archlinux-en-wsl2.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UHl0aG9uJTJDVVY=" data-listing-date-sort="1749772800000" data-listing-file-modified-sort="1750953886320" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="293">
-<div class="thumbnail"><a href="./blog/how-to-use-uv.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/how-to-use-uv.html" class="no-external">How to use uv</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VVY='); return false;">UV</div>
-
-</div>
-<div class="delink listing-description"><a href="./blog/how-to-use-uv.html" class="no-external">
-<p>Install, configure and usage of uv a Python package manager</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./blog/how-to-use-uv.html" class="no-external">
-<div class="listing-date">
-Jun 13, 2025
-</div>
-</a>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="1">Instalación de uv.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="11" data-code-annotation="2">Instalación de Ollama.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="17" data-code-annotation="3">Iniciar el server de Ollama en segundo plano, hay una espera de 2 segundos en lo que el server se levanta, luego descarga el modelo Llama3 para finalizar ejecutando con uv el proyecto.</span>
+</dd>
+</dl>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="UXVhcnRvJTJDU1FMJTJDUg==" data-listing-date-sort="1749340800000" data-listing-file-modified-sort="1750953886320" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="197">
-<div class="thumbnail"><a href="./blog/how-to-run-sql-in-quarto.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./blog/how-to-run-sql-in-quarto.html" class="no-external">How to run SQL in Quarto</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U1FM'); return false;">SQL</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
+<p>Seguimos con el script de ejecución:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>run.sh</strong></pre>
 </div>
-<div class="delink listing-description"><a href="./blog/how-to-run-sql-in-quarto.html" class="no-external">
-<p>Configure to run SQL sentences inside Quarto Documents</p>
-</a></div>
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource bash code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="co"># Build docker image</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a><span class="ex">docker</span> build <span class="at">-f</span> Dockerfile <span class="at">-t</span> langchain_ollama_local .</span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a><span class="co"># Run docker image with Nvidia GPU support</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a><span class="ex">docker</span> run <span class="at">--gpus</span> all <span class="at">-v</span> ollama:/root/.ollama langchain_ollama_local</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="metadata">
-<a href="./blog/how-to-run-sql-in-quarto.html" class="no-external">
-<div class="listing-date">
-Jun 8, 2025
-</div>
-</a>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Compila la imagen del Dockerfile y le da como nombre <code>langchain_ollama_local</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">Crea y ejecuta un contenedor con la imagen construida en el paso anterior y creando un volumen compartido con el host con la intención de que en cada ejecución no descargue el modelo Llama3 (son más de 3GB).</span>
+</dd>
+</dl>
 </div>
 </div>
+<p>Finalizamos con el siguiente archivo:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>main.py</strong></pre>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> langchain_ollama <span class="im">import</span> ChatOllama</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a><span class="kw">def</span> main():</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a>    <span class="bu">print</span>(<span class="st">"Hello from langchain-local-llm-ollama!"</span>)</span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a>    human_request <span class="op">=</span> <span class="st">"They say data is the new oil… and I'm the chemical engineer!"</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6"></a>    <span class="bu">print</span>(human_request)</span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a>    llm <span class="op">=</span> ChatOllama(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-8" class="code-annotation-target"><a href="#annotated-cell-3-8"></a>        model<span class="op">=</span><span class="st">"llama3"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10"></a>    )</span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11"></a>    </span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12"></a>    messages <span class="op">=</span> [</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-13" class="code-annotation-target"><a href="#annotated-cell-3-13"></a>        (<span class="st">"system"</span>, <span class="st">"You are a helpful assistant that translates English to Spanish. Be concise don't ask question and translate the user sentence."</span>,),</span>
+<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14"></a>        (<span class="st">"human"</span>, human_request),</span>
+<span id="annotated-cell-3-15"><a href="#annotated-cell-3-15"></a>    ]</span>
+<span id="annotated-cell-3-16"><a href="#annotated-cell-3-16"></a>    ai_msg <span class="op">=</span> llm.invoke(messages)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-17" class="code-annotation-target"><a href="#annotated-cell-3-17"></a>    <span class="bu">print</span>(ai_msg.content)</span>
+<span id="annotated-cell-3-18"><a href="#annotated-cell-3-18"></a></span>
+<span id="annotated-cell-3-19"><a href="#annotated-cell-3-19"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="annotated-cell-3-20"><a href="#annotated-cell-3-20"></a>    main()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="8" data-code-annotation="1">Debe haberse descargado el model antes de usarse, la imagen se descarga desde Dockerfile.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="9" data-code-annotation="2">Controla el nivel de “creatividad” del modelo, 0 indica la menor creatividad.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="13" data-code-annotation="3">Prompt del sistema.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="17" data-code-annotation="4">El mensaje generado da diferentes métricas de metadata. Usar esta opción si solo quieres el mensaje de salida.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="ejecución" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="ejecución"><span class="header-section-number">4</span> Ejecución</h2>
+<p>Para ejecutar solo basta ejecutar el archivo <code>run.sh</code> con el siguiente comando:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">sh</span> ./run.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para el ejemplo de este proyecto dio el siguiente resultado: <img src="https://github.com/osmandi/langchain-local-llm-ollama/blob/master/output_langchain_ollama.png?raw=true" class="img-fluid"></p>
+</section>
+<section id="notas-finales" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="notas-finales"><span class="header-section-number">5</span> Notas finales</h2>
+<ul>
+<li>Usar la GPU hace que la respuesta sea más rápida.</li>
+<li>Este proyecto solo traduce texto, pero ya tiene la base para ejecutar otros proyectos con LangChain con LLMs locales con Docker y Ollama.</li>
+<li>La imagen de Docker de Ollama permite ejecutarse en GPU de AMD<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> no la he probado pero interesante que ya se pueda hacer con gráficas AMD.</li>
+<li>Repositorio con el código completo: <a href="https://github.com/osmandi/langchain-local-llm-ollama">langchain-local-llm-ollama</a></li>
+</ul>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://ollama.com/blog/ollama-is-now-available-as-an-official-docker-image">Ollama is now available as an official Docker image</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="../blog/how-to-use-uv.html">How to use uv</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://python.langchain.com/docs/integrations/chat/ollama/">ChatOllama</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://hub.docker.com/r/ollama/ollama" class="uri">https://hub.docker.com/r/ollama/ollama</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
