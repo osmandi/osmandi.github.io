@@ -5,7 +5,6 @@ date: "2025-06-23"
 categories: [Linux, Docker, WSL2]
 execute: 
   enabled: false
-engine: knitr
 ---
 
 La primera vez que intenté instalar ArchLinux me tomó más de 2 semanas (básicamente mis vacaciones de la Uni), cometí muchos errores, generé múltiples kernel panics, rompía y reparaba en la medida que iba aprendiendo de Linux.
@@ -30,7 +29,7 @@ Un último punto de esta distribución Linux es que cuenta con la [ArchWiki](htt
 ## Instalación de ArchLinux en WSL2
 
 Empezaremos instalando Arch en WSL2 para ello, usando PowerShell:
-```{Bash}
+```Bash
 wsl --install -d archlinux
 ```
 
@@ -38,7 +37,7 @@ wsl --install -d archlinux
 
 Una vez instalado ArchLinux en WSL automáticamente entrará en Bash de esa distribución. Allí procedermos a actualizar los paquetes e instalar `git` y `curl` que usaremos en la configuración.
 
-```{Bash}
+```Bash
 # Actualizar pacman
 pacman -Syyu
 
@@ -47,7 +46,7 @@ pacman -S git curl
 ```
 
 Crearemos el password para el usuario root:
-```{Bash}
+```Bash
 passwd
 ```
 
@@ -60,12 +59,12 @@ Presiona la tecla ENTER una vez lo hagas te pedirá que la insertes nuevamente  
 
 
 Instalar zsh (es opcional, pero es una shell alternativa a bash interesante que por cierto viene instalada por defecto en MacOS)
-```{Bash}
+```Bash
 pacman -S zsh
 ```
 
 Crear y configurar sudo[^jason-charney]
-```{Bash}
+```Bash
 # Instalar el comando sudo (sirve para tener permisos root)
 pacman -S sudo
 
@@ -84,7 +83,7 @@ Recuerda reemplazar `my_username` por el nombre de usuario de tu preferencia.
 :::
 
 Crear tu usuario[^id100]
-```{Bash}
+```Bash
 # Crear el usuario
 ## Si usas bash, reemplaza /bin/zsh por /bin/bash
 useradd -m -G wheel,sudo -s /bin/zsh my_username
@@ -94,7 +93,7 @@ passwd my_username
 ```
 
 Configurar para que el usuario que creaste sea el por defecto[^arch-default-user]
-```{Bash}
+```Bash
 # Hacer que el usuario que creaste sea el por defecto
 ## Si no lo haces, cada vez que entres a ArchLinux iniciará con el usuario root
 echo -e "\n[user]\ndefault=my_username" >> /etc/wsl.conf
@@ -103,7 +102,7 @@ echo -e "\n[user]\ndefault=my_username" >> /etc/wsl.conf
 ::: {.callout-tip}
 ## Definir el usuario por defecto desde PowerShell
 
-```{Bash}
+```Bash
 wsl --manage archlinux --set-default-user my_username
 ```
 :::
@@ -111,14 +110,14 @@ wsl --manage archlinux --set-default-user my_username
 
 
 Configuración de ohmyzsh[^ohmyzsh], paso opcional, pero le dará un toque a tu `zsh`.
-```{Bash}
+```Bash
 # Instalar y configurar ohmyzsh
 ## Al final te preguntará si quieres hacer zsh la shell por defecto
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 Instalación y configuración de Docker[^docker]
-```{Bash}
+```Bash
 # Instalar docker y docker-compose
 sudo pacman -S docker docker-compose
 
@@ -135,7 +134,7 @@ docker run hello-world
 ```
 
 Si te gusta ejecutar modelos de LLM locales o si trabajas con DeepLearning (Pytorch o Tensorflow) te será muy útil configurar la GPU con Docker[^docker-gpu]
-```{Bash}
+```Bash
 # Instalar Nvidia Container Toolkit
 sudo pacman -S nvidia-container-toolkit
 

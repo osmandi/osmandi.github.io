@@ -5,7 +5,6 @@ date: "2025-06-26"
 categories: [LangChain, Ollama, LLM, Docker, WSL2]
 execute: 
   enabled: false
-engine: knitr
 format:
   html:
     code-line-numbers: true
@@ -25,7 +24,7 @@ Para ejecutar el proyecto solo necesitarás tener Docker instalado y si tienes h
 
 ## Explicación del código
 
-```{Dockerfile filename="Dockerfile"}
+```Dockerfile
 FROM ubuntu:24.04
 
 WORKDIR /app
@@ -49,7 +48,7 @@ CMD /bin/bash -c "ollama serve & sleep 2 && ollama pull llama3 && $HOME/.local/b
 3. Iniciar el server de Ollama en segundo plano, hay una espera de 2 segundos en lo que el server se levanta, luego descarga el modelo Llama3 para finalizar ejecutando con uv el proyecto.
 
 Seguimos con el script de ejecución:
-```{Bash filename="run.sh"}
+```Bash
 # Build docker image
 docker build -f Dockerfile -t langchain_ollama_local . #<1>
 
@@ -60,7 +59,7 @@ docker run --gpus all -v ollama:/root/.ollama langchain_ollama_local #<2>
 2. Crea y ejecuta un contenedor con la imagen construida en el paso anterior y creando un volumen compartido con el host con la intención de que en cada ejecución no descargue el modelo Llama3 (son más de 3GB).
 
 Finalizamos con el siguiente archivo:
-```{Python filename="main.py"}
+```Python
 from langchain_ollama import ChatOllama
 
 def main():
@@ -90,7 +89,7 @@ if __name__ == "__main__":
 ## Ejecución
 
 Para ejecutar solo basta ejecutar el archivo `run.sh` con el siguiente comando:
-```{Bash}
+```Bash
 sh ./run.sh
 ```
 
@@ -104,7 +103,6 @@ Para el ejemplo de este proyecto dio el siguiente resultado:
 - Este proyecto solo traduce texto, pero ya tiene la base para ejecutar otros proyectos con LangChain con LLMs locales con Docker y Ollama.
 - La imagen de Docker de Ollama permite ejecutarse en GPU de AMD[^ollama-docker-gpu-amd] no la he probado pero interesante que ya se pueda hacer con gráficas AMD.
 - Repositorio con el código completo: [langchain-local-llm-ollama](https://github.com/osmandi/langchain-local-llm-ollama)
-
 
 [^ChatOllama]: [ChatOllama](https://python.langchain.com/docs/integrations/chat/ollama/)
 [^uv]: [How to use uv](how-to-use-uv.qmd)
