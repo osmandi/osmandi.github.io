@@ -8,6 +8,7 @@ RUN apt-get update && \
 FROM python:3.12-slim AS main
 WORKDIR /app
 COPY --from=base /quarto /quarto
-COPY requirements.txt .
-RUN dpkg -i /quarto/quarto.deb && pip install -r requirements.txt
+#COPY requirements.txt .
+RUN dpkg -i /quarto/quarto.deb
+#pip install -r requirements.txt
 CMD ["quarto", "--help"]
