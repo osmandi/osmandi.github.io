@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,16 +70,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href=".././profile.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eca5f5e3f45f5f37b6ab2c74a90236c6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-65c8eeba1d4962f10e7b467243ba9e04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-099415e6d9935c40e7db38b8515eb31c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-dc90e29d2ac81cf1b04eec8c7b2b0987.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -381,12 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="explicación-del-código" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="explicación-del-código"><span class="header-section-number">3</span> Explicación del código</h2>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Dockerfile</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource dockerfile code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode dockerfile"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="kw">FROM</span> ubuntu:24.04</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource dockerfile code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode dockerfile"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="kw">FROM</span> ubuntu:24.04</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a></span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="kw">WORKDIR</span> /app</span>
 <span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a></span>
@@ -402,9 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="annotated-cell-1-14"><a href="#annotated-cell-1-14"></a><span class="kw">COPY</span> ./ /app/</span>
 <span id="annotated-cell-1-15"><a href="#annotated-cell-1-15"></a></span>
 <span id="annotated-cell-1-16"><a href="#annotated-cell-1-16"></a><span class="co"># Run Ollama Serve, get Ollama model and run LangChain with uv</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-17" class="code-annotation-target"><a href="#annotated-cell-1-17"></a><span class="kw">CMD</span> <span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"ollama serve &amp; sleep 2 &amp;&amp; ollama pull llama3 &amp;&amp; </span><span class="va">$HOME</span><span class="st">/.local/bin/uv run main.py ; pkill ollama"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-annotation">
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-17" class="code-annotation-target"><a href="#annotated-cell-1-17"></a><span class="kw">CMD</span> <span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"ollama serve &amp; sleep 2 &amp;&amp; ollama pull llama3 &amp;&amp; </span><span class="va">$HOME</span><span class="st">/.local/bin/uv run main.py ; pkill ollama"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
@@ -419,21 +413,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span data-code-cell="annotated-cell-1" data-code-lines="17" data-code-annotation="3">Iniciar el server de Ollama en segundo plano, hay una espera de 2 segundos en lo que el server se levanta, luego descarga el modelo Llama3 para finalizar ejecutando con uv el proyecto.</span>
 </dd>
 </dl>
-</div>
-</div>
 <p>Seguimos con el script de ejecución:</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>run.sh</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource bash code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="co"># Build docker image</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource bash code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="co"># Build docker image</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a><span class="ex">docker</span> build <span class="at">-f</span> Dockerfile <span class="at">-t</span> langchain_ollama_local .</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a></span>
 <span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a><span class="co"># Run docker image with Nvidia GPU support</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a><span class="ex">docker</span> run <span class="at">--gpus</span> all <span class="at">-v</span> ollama:/root/.ollama langchain_ollama_local</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-annotation">
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a><span class="ex">docker</span> run <span class="at">--gpus</span> all <span class="at">-v</span> ollama:/root/.ollama langchain_ollama_local</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
@@ -444,15 +429,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">Crea y ejecuta un contenedor con la imagen construida en el paso anterior y creando un volumen compartido con el host con la intención de que en cada ejecución no descargue el modelo Llama3 (son más de 3GB).</span>
 </dd>
 </dl>
-</div>
-</div>
 <p>Finalizamos con el siguiente archivo:</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>main.py</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> langchain_ollama <span class="im">import</span> ChatOllama</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="im">from</span> langchain_ollama <span class="im">import</span> ChatOllama</span>
 <span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a></span>
 <span id="annotated-cell-3-3"><a href="#annotated-cell-3-3"></a><span class="kw">def</span> main():</span>
 <span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a>    <span class="bu">print</span>(<span class="st">"Hello from langchain-local-llm-ollama!"</span>)</span>
@@ -471,9 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-17" class="code-annotation-target"><a href="#annotated-cell-3-17"></a>    <span class="bu">print</span>(ai_msg.content)</span>
 <span id="annotated-cell-3-18"><a href="#annotated-cell-3-18"></a></span>
 <span id="annotated-cell-3-19"><a href="#annotated-cell-3-19"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="annotated-cell-3-20"><a href="#annotated-cell-3-20"></a>    main()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-annotation">
+<span id="annotated-cell-3-20"><a href="#annotated-cell-3-20"></a>    main()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
@@ -492,15 +468,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span data-code-cell="annotated-cell-3" data-code-lines="17" data-code-annotation="4">El mensaje generado da diferentes métricas de metadata. Usar esta opción si solo quieres el mensaje de salida.</span>
 </dd>
 </dl>
-</div>
-</div>
 </section>
 <section id="ejecución" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="ejecución"><span class="header-section-number">4</span> Ejecución</h2>
 <p>Para ejecutar solo basta ejecutar el archivo <code>run.sh</code> con el siguiente comando:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">sh</span> ./run.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">sh</span> ./run.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Para el ejemplo de este proyecto dio el siguiente resultado: <img src="https://github.com/osmandi/langchain-local-llm-ollama/blob/master/output_langchain_ollama.png?raw=true" class="img-fluid"></p>
 </section>
 <section id="notas-finales" class="level2" data-number="5">
@@ -589,13 +561,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
