@@ -133,6 +133,11 @@ newgrp docker # Refrescar el grupo docker
 docker run hello-world
 ```
 
+
+:::{.callout-warning}
+El instalador de este paquete de Docker es mantenido por la comunidad de Archlinux. Las distribuciones de Linux soportadas directamente desde Docker se pueden encontrar en [docs.docker.com/engine/install](https://docs.docker.com/engine/install).
+:::
+
 Si te gusta ejecutar modelos de LLM locales o si trabajas con DeepLearning (Pytorch o Tensorflow) te será muy útil configurar la GPU con Docker[^docker-gpu]
 ```Bash
 # Instalar Nvidia Container Toolkit
