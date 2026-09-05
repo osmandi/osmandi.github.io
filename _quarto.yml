@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: ../docs
+  output-dir: ./docs
 
 website:
   title: "Osmandi's blog"
@@ -12,6 +12,7 @@ website:
         href: https://github.com/osmandi
       - icon: linkedin
         href: https://linkedin.com/in/osmandi
+  draft-mode: unlinked
 format:
   html:
     toc: true
