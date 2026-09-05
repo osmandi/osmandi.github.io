@@ -15,3 +15,6 @@ website/_freeze
 website/_site
 website/libs
 website/figure-html
+
+/.quarto/
+**/*.quarto_ipynb
