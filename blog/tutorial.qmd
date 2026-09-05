@@ -1,0 +1,11 @@
+---
+title: "This is a tutorial"
+description: "Install, configure and usage of uv a Python package manager"
+date: "2025-06-13"
+categories: [Python, UV]
+execute: 
+  enabled: false
+draft: true
+---
+
+Hello this is a simple test.
