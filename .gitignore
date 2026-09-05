@@ -10,11 +10,9 @@ wheels/
 .venv
 
 # Quarto
-website/.quarto
-website/_freeze
-website/_site
-website/libs
-website/figure-html
-
-/.quarto/
-**/*.quarto_ipynb
+.quarto
+_freeze
+_site
+libs
+figure-html
+*.quarto_ipynb
