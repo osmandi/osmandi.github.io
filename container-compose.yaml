@@ -1,0 +1,13 @@
+
+services:
+  web:
+    container_name: quarto
+    build:
+      context: .
+      dockerfile: Containerfile
+    command: ["preview", "--port", "8080", "--host", "0.0.0.0", "--no-browser"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+    restart: unless-stopped
