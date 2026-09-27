@@ -16,3 +16,6 @@ _site
 libs
 figure-html
 *.quarto_ipynb
+
+/.quarto/
+**/*.quarto_ipynb
