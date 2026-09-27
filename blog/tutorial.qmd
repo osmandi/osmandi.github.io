@@ -2,6 +2,7 @@
 title: "This is a tutorial"
 description: "Install, configure and usage of uv a Python package manager"
 date: "2025-06-13"
+date-modified: "2026-01-01"
 categories: [Python, UV]
 execute: 
   enabled: false
