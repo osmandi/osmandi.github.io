@@ -20,7 +20,7 @@ format:
     number-sections: true
     toc-title: Contents
     theme:
-      dark: darkly
       light: flatly
+      dark: darkly
     css: styles.css
 
