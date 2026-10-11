@@ -109,7 +109,7 @@
     "href": "index.html",
     "title": "Osmandi's blog",
     "section": "",
-    "text": "LangChain con Ollama y Docker\n\n\n\nLangChain\n\nOllama\n\nLLM\n\nDocker\n\nWSL2\n\n\n\nConfigurar LangChain para ejecutar LLM locales con Ollama y Docker\n\n\n\n\n\nJun 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInstalar y configurar Archlinux en WSL2\n\n\n\nLinux\n\nDocker\n\nWSL2\n\n\n\nInstalación y configuración de la distribución Archlinux en WSL2 incluyendo Docker\n\n\n\n\n\nJun 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to use uv\n\n\n\nPython\n\nUV\n\n\n\nInstall, configure and usage of uv a Python package manager\n\n\n\n\n\nJun 13, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Cómo ocultar tu correo en los commits en GitHub\n\n\n\nGit\n\nGitHub\n\n\n\nEl correo que usas en tus commits es público, te muestro cómo ofuscarlo usando GitHub\n\n\n\n\n\nOct 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nLangChain con Ollama y Docker\n\n\n\nLangChain\n\nOllama\n\nLLM\n\nDocker\n\nWSL2\n\n\n\nConfigurar LangChain para ejecutar LLM locales con Ollama y Docker\n\n\n\n\n\nJun 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nInstalar y configurar Archlinux en WSL2\n\n\n\nLinux\n\nDocker\n\nWSL2\n\n\n\nInstalación y configuración de la distribución Archlinux en WSL2 incluyendo Docker\n\n\n\n\n\nJun 23, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHow to use uv\n\n\n\nPython\n\nUV\n\n\n\nInstall, configure and usage of uv a Python package manager\n\n\n\n\n\nJun 13, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/langchain-with-ollama-and-docker.html",
@@ -164,6 +164,13 @@
     "objectID": "blog/tutorial.html",
     "href": "blog/tutorial.html",
     "title": "This is a tutorial",
+    "section": "",
+    "text": "Hello this is a simple test."
+  },
+  {
+    "objectID": "blog/how-to-hide-your-email-in-commits.html",
+    "href": "blog/how-to-hide-your-email-in-commits.html",
+    "title": "Cómo ocultar tu correo en los commits en GitHub",
     "section": "",
     "text": "Hello this is a simple test."
   }

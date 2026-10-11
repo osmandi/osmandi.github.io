@@ -12,5 +12,3 @@ draft: true
 <!-- TODO: Validar si se pueden firmar los commits con el correo privado -->
 
 Hello this is a simple test.
-
-
