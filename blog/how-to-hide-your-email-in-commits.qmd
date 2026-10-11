@@ -1,0 +1,16 @@
+---
+title: "Cómo ocultar tu correo en los commits en GitHub"
+description: "El correo que usas en tus commits es público, te muestro cómo ofuscarlo usando GitHub"
+date: "2026-10-11"
+date-modified: "2026-10-11"
+categories: [Git, GitHub]
+execute: 
+  enabled: false
+draft: true
+---
+
+<!-- TODO: Validar si se pueden firmar los commits con el correo privado -->
+
+Hello this is a simple test.
+
+
