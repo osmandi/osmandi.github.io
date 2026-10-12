@@ -1,14 +1,10 @@
 # Run
 
 ```Bash
-# Run in local for writing
-quarto preview
-
-# Compile to deploy
-quarto render
+podman compose up -d
 ```
 
 TODO:
-- Add image for each article
-- Create a new article
-- Create an article related with PySpark
+- Activar sistema de analítica compatible con GPAR.
+- Agregar una imagen a cada artículo para que se renderise en la página principal.
+- Crear página de portafolio.
