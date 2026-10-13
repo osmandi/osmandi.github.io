@@ -4,8 +4,6 @@ project:
 
 website:
   title: "Osmandi's blog"
-  site-url: https://osmandi.com
-  description: "Blog de tecnología y otros cuentos"
   favicon: ./profile.jpg
   navbar:
     right:
@@ -14,8 +12,6 @@ website:
         href: https://github.com/osmandi
       - icon: linkedin
         href: https://linkedin.com/in/osmandi
-      - icon: rss
-        href: index.xml
   draft-mode: unlinked
 format:
   html:
